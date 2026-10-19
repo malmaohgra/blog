@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config';
 
-// ضعي هنا رابط موقعك: https://USERNAME.github.io (وبعد شراء الدومين: https://دومينك.com)
+// Domain
 export default defineConfig({
-  site: 'https://USERNAME.github.io',
+  site: 'https://malmaohgra.github.io/',
 });
