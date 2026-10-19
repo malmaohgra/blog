@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro';
+import Card from '../../components/Card.astro';
+import { getPosts } from '../../utils';
+const all = await getPosts();
+---
+<Base title="جميع التدوينات" current="posts">
+<main>
+  <section class="page">
+    <div class="wrap">
+      <h1 class="page-h">جميع التدوينات</h1>
+      <div class="grid">
+        {all.map((p) => <Card post={p} />)}
+      </div>
+    </div>
+  </section>
+</main>
+</Base>

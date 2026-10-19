@@ -1,0 +1,46 @@
+---
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+import { SITE } from '../config';
+
+// title: page title (site name is added). description: text for search results.
+// current: which menu link is active. exact=false marks it as a section (used on post pages).
+const { title, description = SITE.description, current, exact = true } = Astro.props;
+const fullTitle = title ? `${title} — ${SITE.name}` : SITE.name;
+---
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{fullTitle}</title>
+<meta name="description" content={description}>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa&family=IBM+Plex+Sans+Arabic:wght@400;500&display=swap" rel="stylesheet">
+<script is:inline>
+try{var t=localStorage.getItem('theme');if(t)document.documentElement.dataset.theme=t}catch(e){}
+</script>
+</head>
+<body>
+<Header current={current} exact={exact} />
+<slot />
+<Footer />
+<script is:inline>
+(function(){
+  var root=document.documentElement, btn=document.getElementById('theme');
+  function current(){return root.dataset.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}
+  function paint(){btn.textContent=current()==='dark'?'☀︎':'☾'}
+  btn.addEventListener('click',function(){
+    var next=current()==='dark'?'light':'dark';
+    root.dataset.theme=next;
+    try{localStorage.setItem('theme',next)}catch(e){}
+    paint();
+  });
+  paint();
+})();
+</script>
+</body>
+</html>
