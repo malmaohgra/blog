@@ -2,7 +2,7 @@
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import '../styles/global.css';
-import { SITE } from '../config';
+import { SITE, url } from '../config';
 
 // title: page title (site name is added). description: text for search results.
 // current: which menu link is active. exact=false marks it as a section (used on post pages).
@@ -16,7 +16,7 @@ const fullTitle = title ? `${title} — ${SITE.name}` : SITE.name;
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>{fullTitle}</title>
 <meta name="description" content={description}>
-<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/svg+xml" href={url('/favicon.svg')}>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Aref+Ruqaa&family=IBM+Plex+Sans+Arabic:wght@400;500&display=swap" rel="stylesheet">

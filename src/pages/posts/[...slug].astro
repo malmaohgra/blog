@@ -3,7 +3,7 @@ import Base from '../../layouts/Base.astro';
 import { Image } from 'astro:assets';
 import { getCollection, render } from 'astro:content';
 import { fmt, iso } from '../../utils';
-
+import { url } from '../../config';
 // Build one page for every post folder.
 export async function getStaticPaths() {
   const posts = await getCollection('posts');
@@ -25,7 +25,7 @@ const { title, date, quote, cover } = post.data;
     {quote && <blockquote class="pull"><span>{quote}</span></blockquote>}
         <div class="prose"><Content /></div>
         <div class="post-end">
-      <a class="pill" href="/posts/"><span aria-hidden="true">→</span> جميع التدوينات</a>
+      <a class="pill" href={url('/posts/')}><span aria-hidden="true">→</span> جميع التدوينات</a>
     </div>
   </article>
 </main>

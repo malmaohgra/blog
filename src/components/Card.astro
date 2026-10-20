@@ -2,10 +2,11 @@
 // One post card. Used on the home page and on the all-posts page.
 import { Image } from 'astro:assets';
 import { fmt, iso } from '../utils';
+import { url } from '../config';
 const { post, extra = false } = Astro.props;
 const { title, date, cover } = post.data;
 ---
-<a class={extra ? 'card extra' : 'card'} href={`/posts/${post.id}/`}>
+<a class={extra ? 'card extra' : 'card'} href={url('/posts/' + post.id + '/')}>
   <div class="ph">
     {cover ? <Image src={cover} alt="" widths={[400, 800]} sizes="(max-width: 560px) 50vw, 360px" /> : 'مكان الصورة'}
   </div>

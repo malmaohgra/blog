@@ -1,5 +1,5 @@
 ---
-import { SITE } from '../config';
+import { SITE, url } from '../config';
 
 // Menu links: [key, url, label]
 const { current, exact = true } = Astro.props;
@@ -11,11 +11,11 @@ const links = [
 ---
 <header class="nav">
   <div class="wrap">
-    <a class="logo" href="/">{SITE.name}</a>
+<a class="logo" href={url('/')}>{SITE.name}</a>
     <nav aria-label="القائمة الرئيسية">
       <ul>
         {links.map(([key, href, label]) => (
-          <li><a href={href} aria-current={key === current ? (exact ? 'page' : 'true') : undefined}>{label}</a></li>
+          <li><a href={url(href)} aria-current={key === current ? (exact ? 'page' : 'true') : undefined}>{label}</a></li>
         ))}
       </ul>
     </nav>

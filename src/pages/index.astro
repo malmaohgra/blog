@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro';
 import Card from '../components/Card.astro';
 import { Image } from 'astro:assets';
 import { getPosts, fmt, iso } from '../utils';
-
+import { url } from '../config';
 const all = await getPosts();
 const latest = all[0];
 // The newest post is the big card; the next 6 are the small cards.
@@ -16,12 +16,12 @@ const cards = all.slice(1, 7);
       <div class="wrap">
         <p class="small-h">أحدث تدوينة</p>
         <div class="feature">
-          <a class="feature-link" href={`/posts/${latest.id}/`} aria-hidden="true" tabindex="-1"></a>
+          <a class="feature-link" href={url('/posts/' + latest.id + '/')} aria-hidden="true" tabindex="-1"></a>
           <div class="feature-text">
-            <h1><a href={`/posts/${latest.id}/`}>{latest.data.title}</a></h1>
+           <h1><a href={url('/posts/' + latest.id + '/')}>{latest.data.title}</a></h1>
             <time class="date" datetime={iso(latest.data.date)}>{fmt(latest.data.date)}</time>
             <p>{latest.data.caption}</p>
-            <a class="pill" href={`/posts/${latest.id}/`}>اقرأ التدوينة <span aria-hidden="true">←</span></a>
+            <a class="pill" href={url('/posts/' + latest.id + '/')}>اقرأ التدوينة <span aria-hidden="true">←</span></a>
           </div>
           <div class="ph">
             {latest.data.cover ? <Image src={latest.data.cover} alt="" widths={[640, 1100, 1600, 2200]} sizes="(max-width: 1180px) 100vw, 1132px" loading="eager" /> : ''}
@@ -36,7 +36,7 @@ const cards = all.slice(1, 7);
       <div class="wrap">
         <div class="sec-head">
           <h2> أخرى</h2>
-          <a class="pill" href="/posts/">جميع التدوينات <span aria-hidden="true">←</span></a>
+          <a class="pill" href={url('/posts/')}>جميع التدوينات <span aria-hidden="true">←</span></a>
         </div>
         <div class="grid">
           {cards.map((p, i) => <Card post={p} extra={i >= 2} />)}
